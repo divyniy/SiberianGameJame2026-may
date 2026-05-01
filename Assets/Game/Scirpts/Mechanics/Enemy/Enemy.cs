@@ -14,7 +14,13 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
         health = new HealthComponent(config.health);
         mover = new EnemyMover(GetComponent<NavMeshAgent>(), config);
 
-        health.onDeath += () => Destroy(this.gameObject); 
+        health.onDeath += Die;
+    }
+    private void Die()
+    {
+        health.onDeath -= Die;
+
+        if(gameObject != null) Destroy(this.gameObject);
     }
     private void Update()
     {
