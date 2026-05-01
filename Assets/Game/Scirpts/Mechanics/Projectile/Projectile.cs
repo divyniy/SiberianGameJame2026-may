@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     {
         this.target = target;
         this.sender = sender;
+
+        if(target == null) Destroy(gameObject);
     }
     
     private void Update()
@@ -17,7 +19,7 @@ public class Projectile : MonoBehaviour
         if(target == null) Destroy(gameObject);
 
         float step = 15 * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        if(transform != null && target != null) transform.position = Vector3.MoveTowards(transform.position, target.position, step);
     }
     private void OnTriggerEnter(Collider other)
     {

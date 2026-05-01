@@ -7,10 +7,6 @@ public class Player : MonoBehaviour, IService, IDamagable
     private PlayerMovmentComponent mover;
     public HealthComponent health {get;set;}
 
-    // private void Start()
-    // {
-    //     Execute();
-    // }
     public void TakeDamage(float damage)
     {
         health.TakeDamage(damage);
@@ -18,6 +14,10 @@ public class Player : MonoBehaviour, IService, IDamagable
     public void Die()
     {
         
+    }
+    public Vector3 GetForward()
+    {
+        return body.forward;
     }
     private void FixedUpdate()
     {

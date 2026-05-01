@@ -938,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 1396613560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 1.29, z: -1.08}
+  m_LocalPosition: {x: -4.56, y: 2.27, z: 7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1001,6 +1001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAbilities:
   - ability: {fileID: 11400000, guid: afe78ee14afa94740a0391e9f3ed7c02, type: 2}
+    isAvaiable: 1
+  - ability: {fileID: 11400000, guid: 7601443301121584f9c7fa5098964eac, type: 2}
     isAvaiable: 1
 --- !u!1 &1418489219
 GameObject:
