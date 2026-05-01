@@ -10,6 +10,8 @@ public class Bootstrap : MonoBehaviour
 
     private void Awake()
     {
+        ServiceLocator.Clear();
+
         Initialize(player);
         Initialize(manager);
         Initialize(playerManager);

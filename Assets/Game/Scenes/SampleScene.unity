@@ -1002,7 +1002,7 @@ MonoBehaviour:
   currentAbilities:
   - ability: {fileID: 11400000, guid: 3007f8d144cd11247ad319d0c1291a51, type: 2}
     isAvaiable: 1
-  - ability: {fileID: 11400000, guid: 98543fa700b830649945e7844c92f50e, type: 2}
+  - ability: {fileID: 11400000, guid: 28c100c2b56b39f4a83bad4fdc480e47, type: 2}
     isAvaiable: 1
 --- !u!1 &1418489219
 GameObject:

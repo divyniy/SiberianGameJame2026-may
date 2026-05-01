@@ -41,7 +41,6 @@ public class PlayerAbilityManager : MonoBehaviour, IService
     private void CountPassive()
     {
         counter++;
-        Debug.Log("Test");
 
         if(counter>2)
         {

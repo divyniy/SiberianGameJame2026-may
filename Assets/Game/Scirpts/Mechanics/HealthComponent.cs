@@ -26,7 +26,6 @@ public interface IDamagable
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Take Damage");
         health.TakeDamage(damage);
     }
     
