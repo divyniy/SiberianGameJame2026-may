@@ -14,6 +14,7 @@ public class ArrowProjectile : MonoBehaviour, IProjectile
 
         if(target == null) Destroy(gameObject);
         transform.LookAt(target);
+        StartCoroutine(Die());
     }
     
     private void Update()
@@ -34,6 +35,11 @@ public class ArrowProjectile : MonoBehaviour, IProjectile
     {
         yield return new WaitForSeconds(timer);
         damagable.TakeDamage((int)damage);
+    }
+    private IEnumerator Die()
+    {
+        yield return new WaitForSeconds(15);
+        Destroy(gameObject);
     }
 }
 

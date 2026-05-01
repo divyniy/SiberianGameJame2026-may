@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour, IProjectile
@@ -12,14 +13,14 @@ public class Projectile : MonoBehaviour, IProjectile
         this.sender = sender;
 
         if(target == null) Destroy(gameObject);
+        
+        transform.forward = ServiceLocator.Get<Player>().GetForward();
+        StartCoroutine(Die());
     }
     
     private void Update()
     {
-        if(target == null) Destroy(gameObject);
-
-        float step = 15 * Time.deltaTime;
-        if(transform != null && target != null) transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        transform.position += transform.forward * Time.deltaTime * 15;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +32,11 @@ public class Projectile : MonoBehaviour, IProjectile
                 Destroy(this.gameObject);
             }
         }
+    }
+    private IEnumerator Die()
+    {
+        yield return new WaitForSeconds(15);
+        Destroy(gameObject);
     }
 }
 

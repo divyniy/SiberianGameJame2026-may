@@ -12,7 +12,9 @@ public class PlayerMovmentComponent : IPlayerComponent
     private Transform body;
 
     // CFG VARIABLES
-    private float speed;
+    /// <summary>
+    /// private float speed;
+    /// </summary>
     private AnimationCurve curve;
     private LayerMask mask;
 
@@ -31,17 +33,16 @@ public class PlayerMovmentComponent : IPlayerComponent
 
         config = Resources.Load<PlayerConfig>("PlayerConfig");
 
-        speed = config.speed;
         curve = config.curve;
         mask = config.groundMask;
     }
 
-    public void FixedUpdate()
+    public void FixedUpdate(float speed)
     {
         isGrounded = Physics.Raycast(orientation.transform.position, -orientation.transform.up, orientation.localScale.y + 0.2f, mask);
         MyInput();
 
-        Move();
+        Move(speed);
         Rotate();
     }
     private void MyInput()
@@ -49,7 +50,7 @@ public class PlayerMovmentComponent : IPlayerComponent
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
     }
-    private void Move()
+    private void Move(float speed)
     {
         direction = new Vector3(x, 0 ,y);
         direction = orientation.transform.forward * direction.z + orientation.transform.right * direction.x;
@@ -78,7 +79,7 @@ public class PlayerMovmentComponent : IPlayerComponent
         Vector3 forward = direction.normalized;
 
         Quaternion targetRotation = Quaternion.LookRotation(forward, up);
-        body.rotation = Quaternion.RotateTowards(body.rotation, targetRotation, 1000f * Time.fixedDeltaTime);
+        body.rotation = Quaternion.RotateTowards(body.rotation, targetRotation, 2500f * Time.fixedDeltaTime);
     }
 
     private Vector3 GetSlopeNormal()
