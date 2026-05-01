@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DaggerAbility", menuName = "Сustom/Abilites/DaggerAbility")]
+[CreateAssetMenu(fileName = "ThrowingAbility", menuName = "Сustom/Abilites/ThrowingAbility")]
 public class DaggerAbility : Ability
 {
     public GameObject projectile;
@@ -11,6 +11,6 @@ public class DaggerAbility : Ability
         Transform transform = ServiceLocator.Get<Player>().transform;
 
         GameObject current = Instantiate(projectile, transform.position, Quaternion.identity);
-        current.GetComponent<Projectile>().Setup(target,transform);
+        current.GetComponent<IProjectile>().Setup(target,transform);
     }
 }

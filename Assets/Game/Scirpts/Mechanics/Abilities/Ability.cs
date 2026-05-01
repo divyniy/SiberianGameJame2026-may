@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject
 {
-    public int cooldown;
+    public float cooldown;
     public int damage;
 
     public abstract void Activate();

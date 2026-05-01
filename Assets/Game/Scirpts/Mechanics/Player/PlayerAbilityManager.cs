@@ -25,9 +25,10 @@ public class PlayerAbilityManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator ResetAbility(int cooldown, PlayerAbility ability)
+    private IEnumerator ResetAbility(float cooldown, PlayerAbility ability)
     {
         yield return new WaitForSeconds(cooldown);
+        Debug.Log("test");
         ability.isAvaiable = true;
         Active();
     }

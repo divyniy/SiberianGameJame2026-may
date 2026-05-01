@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58556702b6c92e24ebcb7c139126f6a1, type: 3}
-  m_Name: Dagger
+  m_Name: ZoneThrow
   m_EditorClassIdentifier: 
-  cooldown: 1
-  damage: 5
-  projectile: {fileID: 8785522413821470880, guid: 114e69161c55c734f9e5463dc89bcca2, type: 3}
+  cooldown: 2.4
+  damage: 1
+  projectile: {fileID: 4557595712036096639, guid: de3d9092d313c2148b29a1aeafd512b4, type: 3}

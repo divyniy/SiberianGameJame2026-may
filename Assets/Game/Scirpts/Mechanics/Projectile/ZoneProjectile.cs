@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IProjectile
+public class ZoneProjectile : MonoBehaviour, IProjectile
 {
+    [SerializeField] private GameObject zone;
+
     private Transform target;
     private Transform sender;
     private float damage;
@@ -28,13 +30,9 @@ public class Projectile : MonoBehaviour, IProjectile
             if(other.GetComponent<IDamagable>() != null)
             {
                 other.GetComponent<IDamagable>().TakeDamage((int)damage);
-                Destroy(this.gameObject);
+                Instantiate(zone, other.transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }
-}
-
-public interface IProjectile
-{
-    public void Setup(Transform target, Transform sender);
 }
