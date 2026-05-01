@@ -77,7 +77,6 @@ public class PlayerMovmentComponent : IPlayerComponent
 
         Vector3 forward = direction.normalized;
 
-        if (Mathf.Abs(Vector3.Dot(forward, up)) > 0.99f) return;
         Quaternion targetRotation = Quaternion.LookRotation(forward, up);
         body.rotation = Quaternion.RotateTowards(body.rotation, targetRotation, 1000f * Time.fixedDeltaTime);
     }

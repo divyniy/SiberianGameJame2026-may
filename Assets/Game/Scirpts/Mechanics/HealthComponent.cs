@@ -12,9 +12,9 @@ public class HealthComponent
     {
         health = startHealth;
     }
-    public void Hit(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
+        health -= (int)damage;
         onDeath?.Invoke();
     }
 }
