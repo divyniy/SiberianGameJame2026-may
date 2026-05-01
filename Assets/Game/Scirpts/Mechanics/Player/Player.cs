@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IService, IDamagable
     public void Execute()
     {
         mover = new PlayerMovmentComponent(transform, GetComponent<Rigidbody>(), orientation, body);
-        health = new HealthComponent(100);
+        health = new HealthComponent(Resources.Load<PlayerConfig>("PlayerConfig").health);
         health.onDeath += Die;
     }
 }

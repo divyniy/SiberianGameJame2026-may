@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesList:
   - {fileID: 7848954558018941223, guid: 7c90ccba612939d40a9b6201bb643d09, type: 3}
+  createdEnemies: []
   player: {fileID: 1396613564}
   radius: 5
 --- !u!1 &832575517
@@ -896,6 +897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396613564}
+  - component: {fileID: 1396613567}
   - component: {fileID: 1396613565}
   - component: {fileID: 1396613561}
   - component: {fileID: 1396613566}
@@ -985,6 +987,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1396613567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396613560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e28c59a03045e14fa469ce3cd0ca0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAbilities:
+  - ability: {fileID: 11400000, guid: afe78ee14afa94740a0391e9f3ed7c02, type: 2}
+    isAvaiable: 1
 --- !u!1 &1418489219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1396613565}
+  manager: {fileID: 805630042}
 --- !u!4 &1418489221
 Transform:
   m_ObjectHideFlags: 0

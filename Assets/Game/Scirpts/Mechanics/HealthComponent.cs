@@ -22,4 +22,11 @@ public class HealthComponent
 public interface IDamagable
 {
     public HealthComponent health {get;set;}
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Take Damage");
+        health.TakeDamage(damage);
+    }
+    
 }

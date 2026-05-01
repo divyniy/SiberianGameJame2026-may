@@ -16,6 +16,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
+  health: 5
   curve:
     serializedVersion: 2
     m_Curve:

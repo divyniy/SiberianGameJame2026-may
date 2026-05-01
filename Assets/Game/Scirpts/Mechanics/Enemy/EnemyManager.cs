@@ -1,20 +1,16 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour, IService
 {
     [SerializeField] private GameObject[] enemiesList;
-    [SerializeField] private List<IEnemy> createdEnemies = new List<IEnemy>();
+    [SerializeField] private List<GameObject> createdEnemies = new List<GameObject>();
     [SerializeField] private Transform player;
     [SerializeField] private float radius;
 
     private Vector3 lastPos;
     
-    private void Start()
-    {
-        Execute();
-    }
-
     public void Spawn(int amount = 1)
     {
         for(int i = 1; i < amount+1; i++)
@@ -28,12 +24,17 @@ public class EnemyManager : MonoBehaviour, IService
             GameObject enemy = Instantiate(enemiesList[Random.Range(0, enemiesList.Length)], lastPos, Quaternion.identity);
 
             enemy.GetComponent<IEnemy>().Execute();
-            createdEnemies.Add(enemy.GetComponent<IEnemy>());
+            createdEnemies.Add(enemy);
         }
     }
 
     public void Execute()
     {
         Spawn(25);
+    }
+
+    public Transform GetClosestEnemyToTransform()
+    {
+       return createdEnemies.Where(x => x != null).OrderByDescending(x => (x.transform.position - transform.position).sqrMagnitude).FirstOrDefault()?.transform;
     }
 }

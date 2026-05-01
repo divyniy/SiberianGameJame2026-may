@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour, IEnemy
+public class Enemy : MonoBehaviour, IEnemy, IDamagable
 {   
     [SerializeField] private EnemyConfig config;
     public EnemyMover mover {get; set;}
@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour, IEnemy
     {
         health = new HealthComponent(config.health);
         mover = new EnemyMover(GetComponent<NavMeshAgent>(), config);
+
+        health.onDeath += () => Destroy(this.gameObject); 
     }
     private void Update()
     {

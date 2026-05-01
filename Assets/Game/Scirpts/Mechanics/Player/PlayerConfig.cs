@@ -5,5 +5,6 @@ public class PlayerConfig : ScriptableObject
 {
     public LayerMask groundMask;
     public float speed;
-    public AnimationCurve curve;
+    public int health;
+    [Tooltip("ДЛЯ АНИМАЦИИ ПОДНЯТИЕ НА ГОРКУ")] public AnimationCurve curve;
 }
