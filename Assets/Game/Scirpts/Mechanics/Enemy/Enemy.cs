@@ -7,12 +7,15 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
     public EnemyMover mover {get; set;}
     public HealthComponent health {get;set;}
 
+    float currentSpeed;
+
     private bool isMoving = true;
 
     public void Execute()
     {
         health = new HealthComponent(config.health);
         mover = new EnemyMover(GetComponent<NavMeshAgent>(), config);
+        currentSpeed = config.speed;
 
         health.onDeath += Die;
     }
@@ -22,9 +25,14 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
 
         if(gameObject != null) Destroy(this.gameObject);
     }
+    public void ChangeSpeed(float percents)
+    {
+        currentSpeed = config.speed -  percents/10 * config.speed ;
+    }
     private void Update()
     {
-        if(isMoving) mover.Update(); 
+        if(isMoving) mover.Update(currentSpeed); 
+        Debug.Log(currentSpeed);
     }
 
     public void ToogleFollowing(bool flag)
@@ -44,8 +52,9 @@ public class EnemyMover
         agent.speed = config.speed;
     }
 
-    public void Update()
+    public void Update(float speed)
     {
+        agent.speed = speed;
         agent.destination = point;
     }
 }
@@ -54,6 +63,7 @@ public interface IEnemy
 {
     public EnemyMover mover {get; set;}
     public HealthComponent health {get;set;}
+    public void ChangeSpeed(float percents);
     public void Execute();
     public void ToogleFollowing(bool flag);
 }
