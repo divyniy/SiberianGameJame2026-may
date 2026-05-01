@@ -8,6 +8,7 @@ public class VirusZone : Ability
 
     public override void Activate()
     {
+        damage += (int)ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.strength;
         List<Transform> a = ServiceLocator.Get<EnemyManager>().GetEnemyInDistance(distance);
         
         if (a.Count <= 0) return;

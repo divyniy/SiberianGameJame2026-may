@@ -7,10 +7,13 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private EnemyManager manager;
     [SerializeField] private PlayerAbilityManager playerManager;
+    [SerializeField] private ItemManager itemManager;
 
     private void Awake()
     {
         ServiceLocator.Clear();
+
+        Initialize(itemManager);
 
         Initialize(player);
         Initialize(manager);

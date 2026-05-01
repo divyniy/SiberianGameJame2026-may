@@ -13,6 +13,7 @@ public class Zone : MonoBehaviour
     }
     private void Start()
     {
+        timeAlive += ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.length;
         StartCoroutine(DestroyGameObject());
     }
     private IEnumerator DestroyGameObject()

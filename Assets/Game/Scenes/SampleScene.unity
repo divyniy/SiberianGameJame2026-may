@@ -899,6 +899,7 @@ GameObject:
   - component: {fileID: 1396613564}
   - component: {fileID: 1396613567}
   - component: {fileID: 1396613565}
+  - component: {fileID: 1396613568}
   - component: {fileID: 1396613561}
   - component: {fileID: 1396613566}
   m_Layer: 7
@@ -1000,10 +1001,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAbilities:
-  - ability: {fileID: 11400000, guid: 3007f8d144cd11247ad319d0c1291a51, type: 2}
+  - ability: {fileID: 11400000, guid: c3d4ded0286e57d4faf1d54e72f1ea02, type: 2}
     isAvaiable: 1
-  - ability: {fileID: 11400000, guid: 28c100c2b56b39f4a83bad4fdc480e47, type: 2}
-    isAvaiable: 1
+--- !u!114 &1396613568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396613560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8701a948fe5f61c4a8123bbe55a48624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: b8094cc9e11c9244f89b2c2afb0e5d03, type: 2}
+  characteristic:
+    strength: 0
+    speed: 0
+    length: 0
+    cooldown: 0
 --- !u!1 &1418489219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1054,7 @@ MonoBehaviour:
   player: {fileID: 1396613565}
   manager: {fileID: 805630042}
   playerManager: {fileID: 1396613567}
+  itemManager: {fileID: 1396613568}
 --- !u!4 &1418489221
 Transform:
   m_ObjectHideFlags: 0

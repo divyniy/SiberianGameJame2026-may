@@ -8,6 +8,8 @@ public class DaggerPunchAbility : Ability
 
     public override void Activate()
     {
+        damage += (int)ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.strength;
+
         Transform player = ServiceLocator.Get<Player>().transform;
         Vector3 forward = ServiceLocator.Get<Player>().GetForward();
 
@@ -22,7 +24,7 @@ public class DaggerPunchAbility : Ability
 
             if(agnleBetween <= angle)
             {
-                i.GetComponent<IDamagable>().TakeDamage(5);
+                i.GetComponent<IDamagable>().TakeDamage(damage);
                 Debug.Log("hitted");
             }
         }

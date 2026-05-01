@@ -13,7 +13,8 @@ public class Projectile : MonoBehaviour, IProjectile
         this.sender = sender;
 
         if(target == null) Destroy(gameObject);
-        
+        damage += (int)ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.strength;
+
         transform.forward = ServiceLocator.Get<Player>().GetForward();
         StartCoroutine(Die());
     }

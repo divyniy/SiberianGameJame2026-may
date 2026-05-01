@@ -5,6 +5,8 @@ public class Player : MonoBehaviour, IService, IDamagable
 {
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform body;
+
+    private PlayerCharacteristics characteristics => ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics;
     private PlayerMovmentComponent mover;
     public HealthComponent health {get;set;}
     public bool hasShield {get; private set;}
@@ -14,7 +16,10 @@ public class Player : MonoBehaviour, IService, IDamagable
 
     public void TakeDamage(float damage)
     {
-        if(hasShield) { SetShield(false); return;}
+        if(hasShield) 
+        { 
+            SetShield(false); return;
+        }
 
         health.TakeDamage(damage);
     }
@@ -29,7 +34,7 @@ public class Player : MonoBehaviour, IService, IDamagable
 
     public void SetSpeed(float percents)
     {
-       speedMultiplayer = percents/10 * Resources.Load<PlayerConfig>("PlayerConfig").speed;
+       speedMultiplayer = percents/10 * (Resources.Load<PlayerConfig>("PlayerConfig").speed + characteristics.speed);
     }
     public Vector3 GetForward()
     {
@@ -43,7 +48,7 @@ public class Player : MonoBehaviour, IService, IDamagable
     {
         mover = new PlayerMovmentComponent(transform, GetComponent<Rigidbody>(), orientation, body);
         health = new HealthComponent(Resources.Load<PlayerConfig>("PlayerConfig").health);
-        speed = Resources.Load<PlayerConfig>("PlayerConfig").speed;
+        speed = Resources.Load<PlayerConfig>("PlayerConfig").speed + characteristics.speed;
 
         hasShield = false;
         health.onDeath += Die;

@@ -12,6 +12,7 @@ public class ArrowProjectile : MonoBehaviour, IProjectile
     {
         this.target = target;
         this.sender = sender;
+        damage += (int)ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.strength;
 
         if(target == null) Destroy(gameObject);
         transform.LookAt(target);

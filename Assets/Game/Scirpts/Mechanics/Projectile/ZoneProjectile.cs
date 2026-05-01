@@ -12,7 +12,7 @@ public class ZoneProjectile : MonoBehaviour, IProjectile
     {
         this.target = target;
         this.sender = sender;
-
+        Instantiate(zone, transform.position, Quaternion.identity);
         if(target == null) Destroy(gameObject);
     }
     

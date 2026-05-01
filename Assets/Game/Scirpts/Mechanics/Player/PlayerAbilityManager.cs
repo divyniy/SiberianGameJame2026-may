@@ -16,13 +16,15 @@ public class PlayerAbilityManager : MonoBehaviour, IService
     }
     private void Active()
     {
+        PlayerCharacteristics characteristics = ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics;
+
         foreach(PlayerAbility ability in currentAbilities)
         {
             if(ability.isAvaiable)
             {
                 ability.isAvaiable = false;
                 ability.ability.Activate();
-                StartCoroutine(ResetAbility(ability.ability.cooldown, ability));
+                StartCoroutine(ResetAbility(ability.ability.cooldown-characteristics.cooldown, ability));
             }
         }
     }
@@ -62,5 +64,5 @@ public class PlayerAbilityManager : MonoBehaviour, IService
 public class PlayerAbility
 {
     public Ability ability;
-    public bool isAvaiable;
+    public bool isAvaiable = true;
 }
