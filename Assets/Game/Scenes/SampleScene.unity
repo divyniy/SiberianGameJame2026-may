@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAbilities:
-  - ability: {fileID: 11400000, guid: afe78ee14afa94740a0391e9f3ed7c02, type: 2}
+  - ability: {fileID: 11400000, guid: 36cacec693386d741953af3d09b91210, type: 2}
     isAvaiable: 1
 --- !u!1 &1418489219
 GameObject:
