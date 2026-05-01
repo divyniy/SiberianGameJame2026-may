@@ -1,11 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowProjectile : MonoBehaviour, IProjectile
 {
     private Transform target;
     private Transform sender;
-    private float damage;
+    [SerializeField] private float damage;
 
     public void Setup(Transform target, Transform sender)
     {
@@ -23,18 +24,19 @@ public class ArrowProjectile : MonoBehaviour, IProjectile
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform != sender)
+        if(other.tag != "Player")
         {
             if(other.GetComponent<IDamagable>() != null)
             {
-                StartCoroutine(TakeDamageAfterSeconds(1, other.gameObject.GetComponent<IDamagable>()));
+                StartCoroutine(TakeDamageAfterSeconds(1, other.gameObject));
             }
         }
     }
-    private IEnumerator TakeDamageAfterSeconds(float timer, IDamagable damagable)
+    private IEnumerator TakeDamageAfterSeconds(float timer, GameObject obj)
     {
         yield return new WaitForSeconds(timer);
-        damagable.TakeDamage((int)damage);
+        if(obj != null)
+        obj.GetComponent<IDamagable>().TakeDamage((int)damage);
     }
     private IEnumerator Die()
     {

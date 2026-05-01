@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
         mover = new EnemyMover(GetComponent<NavMeshAgent>(), config);
         currentSpeed = config.speed;
 
+        health.onDeath += () => PlayerAbilityManager.onDied?.Invoke();
         health.onDeath += Die;
     }
     private void Die()
@@ -32,7 +33,6 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
     private void Update()
     {
         if(isMoving) mover.Update(currentSpeed); 
-        Debug.Log(currentSpeed);
     }
 
     public void ToogleFollowing(bool flag)

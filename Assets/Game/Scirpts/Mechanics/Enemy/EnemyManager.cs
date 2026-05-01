@@ -33,7 +33,10 @@ public class EnemyManager : MonoBehaviour, IService
     {
         Spawn(25);
     }
-
+    public GameObject GetRandomEnemy()
+    {
+        return createdEnemies[Random.Range(0, createdEnemies.Count)];
+    } 
     public Transform GetClosestEnemyToTransform()
     {
        return createdEnemies.Where(x => x != null).OrderByDescending(x => (x.transform.position - transform.position).sqrMagnitude).FirstOrDefault()?.transform;

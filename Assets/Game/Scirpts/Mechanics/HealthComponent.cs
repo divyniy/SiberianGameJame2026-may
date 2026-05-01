@@ -15,6 +15,7 @@ public class HealthComponent
     public void TakeDamage(float damage)
     {
         health -= (int)damage;
+        if(health<=0)
         onDeath?.Invoke();
     }
 }

@@ -1000,7 +1000,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAbilities:
-  - ability: {fileID: 11400000, guid: 5d872fb18a57fc4468a32a365a140859, type: 2}
+  - ability: {fileID: 11400000, guid: 3007f8d144cd11247ad319d0c1291a51, type: 2}
+    isAvaiable: 1
+  - ability: {fileID: 11400000, guid: 98543fa700b830649945e7844c92f50e, type: 2}
     isAvaiable: 1
 --- !u!1 &1418489219
 GameObject:
@@ -1033,6 +1035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1396613565}
   manager: {fileID: 805630042}
+  playerManager: {fileID: 1396613567}
 --- !u!4 &1418489221
 Transform:
   m_ObjectHideFlags: 0
