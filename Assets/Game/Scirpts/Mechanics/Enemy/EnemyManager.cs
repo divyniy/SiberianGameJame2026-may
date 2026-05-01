@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -36,5 +37,25 @@ public class EnemyManager : MonoBehaviour, IService
     public Transform GetClosestEnemyToTransform()
     {
        return createdEnemies.Where(x => x != null).OrderByDescending(x => (x.transform.position - transform.position).sqrMagnitude).FirstOrDefault()?.transform;
+    }
+    public List<Transform> GetEnemyInDistance(float distance)
+    {
+        return createdEnemies.Where(x => x != null && Vector3.Distance(x.transform.position, player.position) < distance).Select(x => x.transform).ToList();
+    }
+    public IEnumerator Stun(float timer, Transform a)
+    {
+        IEnemy enemy = a.GetComponent<IEnemy>();
+
+        a.GetComponent<Rigidbody>().isKinematic = true;
+        a.GetComponent<MeshRenderer>().material.color = Color.red;
+        enemy.ToogleFollowing(false);
+
+        yield return new WaitForSeconds(timer);
+
+        if(enemy==null) yield return null; 
+
+        a.GetComponent<MeshRenderer>().material.color = Color.white;
+        a.GetComponent<Rigidbody>().isKinematic = false;
+        enemy.ToogleFollowing(true);
     }
 }

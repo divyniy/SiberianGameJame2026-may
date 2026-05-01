@@ -24,12 +24,13 @@ public class Enemy : MonoBehaviour, IEnemy, IDamagable
     }
     private void Update()
     {
-        if(isMoving) mover.Update();
+        if(isMoving) mover.Update(); 
     }
 
     public void ToogleFollowing(bool flag)
     {
        isMoving = flag;
+       GetComponent<NavMeshAgent>().enabled = flag;
     }
 }
 

@@ -29,6 +29,7 @@ public class Zone : MonoBehaviour
                 if(other.tag != "Player")
                 other.GetComponent<IDamagable>().TakeDamage(3);
             }
+            timer = 0;
         }
     }
 }

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58556702b6c92e24ebcb7c139126f6a1, type: 3}
-  m_Name: ArrowThrow
+  m_Script: {fileID: 11500000, guid: ca1bc5af0df06ec4c896bd04534e4bef, type: 3}
+  m_Name: Stun
   m_EditorClassIdentifier: 
-  cooldown: 1.4
-  damage: 1
-  projectile: {fileID: 3798034375490849786, guid: 9392b7393bdbe1d488d396851dbf7892, type: 3}
+  cooldown: 0.5
+  damage: 0
+  radius: 5
+  stunTime: 1
