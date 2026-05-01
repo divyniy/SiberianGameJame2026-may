@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IService, IDamagable
 {
+    [SerializeField] private Transform orientation;
+    [SerializeField] private Transform body;
     private PlayerMovmentComponent mover;
     public HealthComponent health {get;set;}
 
@@ -17,7 +19,7 @@ public class Player : MonoBehaviour, IService, IDamagable
     }
     public void Execute()
     {
-        mover = new PlayerMovmentComponent(transform, GetComponent<Rigidbody>());
+        mover = new PlayerMovmentComponent(transform, GetComponent<Rigidbody>(), orientation, body);
         health = new HealthComponent(100);
     }
 }

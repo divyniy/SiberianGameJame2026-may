@@ -8,6 +8,8 @@ public class PlayerMovmentComponent : IPlayerComponent
     private Transform player;
     private Rigidbody rb;
     private PlayerConfig config;
+    private Transform orientation;
+    private Transform body;
 
     // CFG VARIABLES
     private float speed;
@@ -20,10 +22,12 @@ public class PlayerMovmentComponent : IPlayerComponent
     private Vector3 direction;
     private bool isGrounded;
 
-    public PlayerMovmentComponent(Transform player, Rigidbody rb)
+    public PlayerMovmentComponent(Transform player, Rigidbody rb, Transform orientation, Transform body)
     {
         this.rb = rb;
         this.player = player;
+        this.orientation = orientation;
+        this.body = body;
 
         config = Resources.Load<PlayerConfig>("PlayerConfig");
 
@@ -34,10 +38,11 @@ public class PlayerMovmentComponent : IPlayerComponent
 
     public void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(player.transform.position, -player.transform.up, player.localScale.y + 0.2f, mask);
+        isGrounded = Physics.Raycast(orientation.transform.position, -orientation.transform.up, orientation.localScale.y + 0.2f, mask);
         MyInput();
 
         Move();
+        Rotate();
     }
     private void MyInput()
     {
@@ -47,30 +52,45 @@ public class PlayerMovmentComponent : IPlayerComponent
     private void Move()
     {
         direction = new Vector3(x, 0 ,y);
-        direction = player.transform.forward * direction.z + player.transform.right * direction.x;
+        direction = orientation.transform.forward * direction.z + orientation.transform.right * direction.x;
 
         direction = direction.normalized * speed;
 
-        Vector3 slope = GetSlopeNormal();
+        
 
         if(isGrounded)
         {
+            Vector3 slope = GetSlopeNormal();
             direction = Vector3.ProjectOnPlane(direction, GetSlopeNormal()).normalized*speed;
-            Debug.Log(slope);
-
-            Quaternion targetQuartion = slope != Vector3.zero ? Quaternion.FromToRotation(Vector3.up, slope) : Quaternion.identity;
-            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetQuartion, curve.Evaluate(0.55f));
         }
         
 
         rb.MovePosition((direction * Time.fixedDeltaTime)  + rb.position);
     }
 
-    
+    private void Rotate()
+    {
+        Vector3 currentSlopeNormal = GetSlopeNormal();
+        if (direction.magnitude <= 0.001f) return;
+
+        Vector3 up = (isGrounded && currentSlopeNormal != Vector3.zero) ? currentSlopeNormal : Vector3.up;
+
+        Vector3 forward = direction.normalized;
+
+        if (Mathf.Abs(Vector3.Dot(forward, up)) > 0.99f) return;
+        Quaternion targetRotation = Quaternion.LookRotation(forward, up);
+        body.rotation = Quaternion.RotateTowards(body.rotation, targetRotation, 1000f * Time.fixedDeltaTime);
+    }
+
     private Vector3 GetSlopeNormal()
     {
         RaycastHit hit;
-        Physics.Raycast(player.transform.position, -player.transform.up, out hit, player.localScale.y + 0.5f, mask);
+        
+        Vector3 forward = orientation.forward;
+
+        Debug.DrawRay(orientation.transform.position, -orientation.transform.up, Color.red, orientation.localScale.y + 0.8f);
+
+        Physics.Raycast(orientation.transform.position, -orientation.transform.up, out hit, orientation.localScale.y + 0.5f, mask);
        
         if(hit.transform != null)
         {
