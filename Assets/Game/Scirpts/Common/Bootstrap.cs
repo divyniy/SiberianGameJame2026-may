@@ -8,6 +8,9 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private EnemyManager manager;
     [SerializeField] private PlayerAbilityManager playerManager;
     [SerializeField] private ItemManager itemManager;
+    [SerializeField] private ChunkController chunk;
+    [SerializeField] private SessionManager game;
+
 
     private void Awake()
     {
@@ -18,6 +21,13 @@ public class Bootstrap : MonoBehaviour
         Initialize(player);
         Initialize(manager);
         Initialize(playerManager);
+        Initialize(chunk);
+        Initialize(game);
+    }
+
+    private void StartGame()
+    {
+        
     }
 
     private void Initialize<T>(T service) where T : IService

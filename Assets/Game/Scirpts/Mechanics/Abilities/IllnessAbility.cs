@@ -13,7 +13,5 @@ public class IllnessAbility : Ability
 
         if(game != null)
         game.GetComponent<IDamagable>().health.TakeDamage(damage);
-
-        Debug.Log("test");
     }
 }

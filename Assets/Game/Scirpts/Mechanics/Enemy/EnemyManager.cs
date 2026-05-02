@@ -8,11 +8,11 @@ public class EnemyManager : MonoBehaviour, IService
     [SerializeField] private GameObject[] enemiesList;
     [SerializeField] private List<GameObject> createdEnemies = new List<GameObject>();
     [SerializeField] private Transform player;
-    [SerializeField] private float radius;
+    //[SerializeField] private float radius;
 
     private Vector3 lastPos;
     
-    public void Spawn(int amount = 1)
+    public void Spawn(int amount = 1, float radius = 5)
     {
         for(int i = 1; i < amount+1; i++)
         {
@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour, IService
 
     public void Execute()
     {
-        Spawn(25);
+        
     }
     public GameObject GetRandomEnemy()
     {
