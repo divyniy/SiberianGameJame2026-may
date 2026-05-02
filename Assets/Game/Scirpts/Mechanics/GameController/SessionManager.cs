@@ -53,7 +53,7 @@ public class SessionManager : MonoBehaviour, IService
     private void DisplayHealth()
     {
         HealthComponent healthComponent = ServiceLocator.Get<Player>().health;
-        int black = (5 - healthComponent.health) -1;
+        int black = (5 - healthComponent.health) - 1;
 
         if(black<0) return;
         if(black > 4) return;
