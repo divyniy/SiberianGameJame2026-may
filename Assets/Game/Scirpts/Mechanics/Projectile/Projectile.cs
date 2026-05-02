@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour, IProjectile
         {
             if(other.GetComponent<IDamagable>() != null)
             {
-                other.GetComponent<IDamagable>().TakeDamage(Mathf.RoundToInt(damage));
+                other.GetComponent<IDamagable>().TakeDamage(Mathf.FloorToInt(damage));
                 Destroy(this.gameObject);
             }
         }

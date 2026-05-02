@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IService, IDamagable
 {
@@ -13,6 +15,7 @@ public class Player : MonoBehaviour, IService, IDamagable
 
     private float speed;
     private float speedMultiplayer = 0;
+    public static UnityAction onHit;
 
     public void TakeDamage(float damage)
     {
@@ -20,12 +23,13 @@ public class Player : MonoBehaviour, IService, IDamagable
         { 
             SetShield(false); return;
         }
-
+        
         health.TakeDamage(damage);
+        onHit?.Invoke();
     }
     public void Die()
     {
-        
+        SceneManagerManager.ChangeScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void SetShield(bool flag)
     {

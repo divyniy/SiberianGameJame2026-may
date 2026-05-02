@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerAbilityManager : MonoBehaviour, IService
 {
-    [SerializeField] private PlayerAbility[] currentAbilities;
+    [SerializeField] private List<PlayerAbility> currentAbilities;
     public static UnityAction onDied;
     private int counter;
 
@@ -34,7 +35,24 @@ public class PlayerAbilityManager : MonoBehaviour, IService
         ability.isAvaiable = true;
         Active();
     }
+    public void GiveRandomAbility()
+    {
+        if(currentAbilities.Count>3) return;
 
+        GameConfig cfg = Resources.Load<GameConfig>("GameConfig");
+        Ability abi = cfg.abilities[Random.Range(0, cfg.abilities.Length)];
+
+        AddAbility(abi);
+    }
+    private void AddAbility(Ability randomAbility)
+    {
+        PlayerAbility ability = new PlayerAbility();
+        ability.ability = randomAbility;
+        ability.isAvaiable = true;
+        currentAbilities.Add(ability);
+
+        Active();
+    }
     public void Execute()
     {
         Active();

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,9 +15,15 @@ public class HealthComponent
     }
     public void TakeDamage(float damage)
     {
-        health -= (int)damage;
+
+        health -= Convert.ToInt16(damage);
+
         if(health<=0)
-        onDeath?.Invoke();
+        {
+            onDeath?.Invoke();
+            health = 0;
+        }
+        
     }
 }
 

@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 019395f160f06104f89b0eb3615bcf99, type: 2}
+  blood: {fileID: 7913526583212025550, guid: f8ae2c314b782334a97493669c07e532, type: 3}
 --- !u!135 &-7026797132884623134
 SphereCollider:
   m_ObjectHideFlags: 0

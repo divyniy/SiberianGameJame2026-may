@@ -15,6 +15,11 @@ public class ItemManager : MonoBehaviour, IService
         upgrades.Add(item);
         Recalculate();
     }
+    public void RemoveUpgrade()
+    {
+        upgrades.RemoveAt(upgrades.Count-1);
+        Recalculate();
+    }
     [ContextMenu("Recalculate")]
     public void Recalculate()
     {

@@ -19,9 +19,12 @@ public class SessionManager : MonoBehaviour, IService
     }
     private void StartGame()
     {
+        SceneManagerManager.LoadScene();
+
         isPlaying = true;
         timer = 0;
 
+        Player.onHit += GiveAbility;
         manager = ServiceLocator.Get<EnemyManager>();
     }
     private void Update()
@@ -41,6 +44,10 @@ public class SessionManager : MonoBehaviour, IService
             }
         }
     }
+    private void GiveAbility()
+    {
+        ServiceLocator.Get<PlayerAbilityManager>().GiveRandomAbility();
+    }
     private void DisplayTime()
     {
         string minutes = (Mathf.RoundToInt(timer)/60).ToString();
@@ -52,13 +59,9 @@ public class SessionManager : MonoBehaviour, IService
     }
     private void DisplayHealth()
     {
-        HealthComponent healthComponent = ServiceLocator.Get<Player>().health;
-        int black = (5 - healthComponent.health) - 1;
-
-        if(black<0) return;
-        if(black > 4) return;
-
-        hp[black].enabled = false;
+        int currentHp = ServiceLocator.Get<Player>().health.health;
+        for (int i = 0; i < hp.Length; i++)
+            hp[i].gameObject.SetActive(i < currentHp);
     }
 }
 
