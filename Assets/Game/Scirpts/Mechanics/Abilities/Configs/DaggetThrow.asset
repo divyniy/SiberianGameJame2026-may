@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DaggetThrow
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 5
+  damage: 1
   projectile: {fileID: 8785522413821470880, guid: 114e69161c55c734f9e5463dc89bcca2, type: 3}

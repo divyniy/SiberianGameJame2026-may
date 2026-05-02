@@ -944,7 +944,7 @@ MonoBehaviour:
   currentAbilities:
   - ability: {fileID: 11400000, guid: 98543fa700b830649945e7844c92f50e, type: 2}
     isAvaiable: 1
-  - ability: {fileID: 11400000, guid: 3007f8d144cd11247ad319d0c1291a51, type: 2}
+  - ability: {fileID: 11400000, guid: afe78ee14afa94740a0391e9f3ed7c02, type: 2}
     isAvaiable: 1
 --- !u!114 &1396613568
 MonoBehaviour:
