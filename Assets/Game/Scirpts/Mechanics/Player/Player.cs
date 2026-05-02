@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IService, IDamagable
     public bool hasShield {get; private set;}
 
     private float speed;
-    private float speedMultiplayer;
+    private float speedMultiplayer = 0;
 
     public void TakeDamage(float damage)
     {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour, IService, IDamagable
     }
     private void FixedUpdate()
     {
-        mover.FixedUpdate(speed - speedMultiplayer);
+        mover.FixedUpdate(Resources.Load<PlayerConfig>("PlayerConfig").speed + characteristics.speed - speedMultiplayer);
     }
     public void Execute()
     {

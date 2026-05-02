@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour, IProjectile
 {
     private Transform target;
     private Transform sender;
-    private float damage;
+    [SerializeField] private float damage;
 
     public void Setup(Transform target, Transform sender)
     {

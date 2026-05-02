@@ -9,7 +9,7 @@ public class StunAbility : Ability
 
     public override void Activate()
     {
-        stunTime += ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.speed;
+        stunTime += ServiceLocator.Get<ItemManager>().GetPlayerCharacteristics.length;
         
         List<Transform> objects = ServiceLocator.Get<EnemyManager>().GetEnemyInDistance(radius);
         if(objects.Count <= 0) return;
